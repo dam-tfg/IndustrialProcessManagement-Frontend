@@ -13,7 +13,7 @@ export const axiosInstance = axios.create({
     }
 })
 
-axiosInstance.interceptors.request.use( function(config) {
+axiosInstance.interceptors.request.use((config) => {
 
     if (localStorage.getItem(ACCESS_TOKEN)) {
         config.headers["Authorization"] = localStorage.getItem(ACCESS_TOKEN) ? `Bearer ${localStorage.getItem(ACCESS_TOKEN)}` : "";
@@ -21,12 +21,12 @@ axiosInstance.interceptors.request.use( function(config) {
  
     return config;
  
-}, function(error) {
+}, (error) => {
      
     return Promise.reject(error);
 });
  
-axiosInstance.interceptors.response.use( function(response) {
+axiosInstance.interceptors.response.use((response) => {
      
     if(response.status === 401) {
  
@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use( function(response) {
     // TODO set more errors
     return response;
  
-}, function (error) {
+}, (error) => {
      
     return Promise.reject(error);
 });
