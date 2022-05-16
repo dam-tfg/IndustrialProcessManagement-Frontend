@@ -2,14 +2,17 @@
  * @author Alberto González
  *
  */
+import { useEffect } from "react";
 import { useCustom } from '../../../hook/app/useCustom';
 import { Layout, Menu } from 'antd';
 import {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
+    ShoppingCartOutlined,
+    AppstoreAddOutlined,
+    UnorderedListOutlined,
 } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import styles from '../../scss/SidebarComponent.module.scss';
+import UserService from '../../../services/user/UserService';
 
 const { Sider } = Layout;
 
@@ -18,6 +21,26 @@ export const SidebarComponent = () => {
     const { menuState } = useCustom();
     const navigate = useNavigate();
 
+    const client = {
+        key: 'order',
+        icon: <ShoppingCartOutlined />,
+        label: 'Pedidos',
+        children: [
+            {
+                key: 'new-order',
+                icon: <AppstoreAddOutlined />,
+                label: 'Nuevo pedido',
+                onClick: () => navigate('orders'),
+            },
+            {
+                key: 'orders',
+                icon: <UnorderedListOutlined />,
+                label: 'Pedidos',
+                onClick: () => navigate('scroll-page'),
+            }
+        ]
+    };  
+    
     return (
         <Sider trigger={null} collapsible collapsed={menuState} style={{
             overflow: 'auto',
@@ -26,32 +49,39 @@ export const SidebarComponent = () => {
             left: 0,
             top: 0,
             bottom: 0,
-          }}>
-            
-            <Link to="/">
-                <div className="logo" style={{height: '32px', margin: '16px', background: 'rgba(255, 255, 255, 0.2)'}}/> {/* TODO Logo App */}
-            </Link>
+        }}>
+
+            <div className={styles.headerLogo}>
+                <Link to="/" id={styles.logo} 
+                    className={menuState 
+                        ? styles.toggle 
+                        : styles.full} 
+                />
+            </div>
             <Menu /* TODO Menu */
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={['orders']}
                 items={[
                     {
-                        key: '1',
-                        icon: <UserOutlined />,
-                        label: 'nav 1',
-                        onClick: () => navigate('scroll-page'),
-                    },
-                    {
-                        key: '2',
-                        icon: <VideoCameraOutlined />,
-                        label: 'nav 2',
-                    },
-                    {
-                        key: '3',
-                        icon: <UploadOutlined />,
-                        label: 'nav 3',
-                    },
+                        key: 'order',
+                        icon: <ShoppingCartOutlined />,
+                        label: 'Pedidos',
+                        children: [
+                            (async () => await UserService.checkAuthorization("client")) && {
+                                key: 'new-order',
+                                icon: <AppstoreAddOutlined />,
+                                label: 'Nuevo pedido',
+                                onClick: () => navigate('orders'),
+                            },
+                            {
+                                key: 'orders',
+                                icon: <UnorderedListOutlined />,
+                                label: 'Pedidos',
+                                onClick: () => navigate('scroll-page'),
+                            }
+                        ]
+                    }   
                 ]}
             />
         </Sider>

@@ -1,0 +1,27 @@
+.headerLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1.2rem;
+    background-color: #4de2e90f;
+}
+
+#logo {
+    height: 35px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    transition:opacity 1s;
+    &:hover {
+        opacity: .8;
+        transition:opacity 1s;
+    }
+}
+
+.full {
+    background-image: url(../../image/logo.png);
+}
+
+.toggle {    
+    background-image: url(../../image/toggle-logo.png);
+}
