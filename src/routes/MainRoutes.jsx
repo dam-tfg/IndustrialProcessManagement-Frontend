@@ -11,6 +11,7 @@ import {
 import { App } from '../app/App';
 import { LoginComponent } from "../components/auth/LoginComponent";
 import { Dashboard } from '../pages/admin/dashboard'
+import { OrdersPage } from "../pages/client/OrdersPage";
 import { E404 } from '../pages/error/404';
 import { Principal } from "../pages/Principal";
 import { ProfilePage } from "../pages/user/ProfilePage";
@@ -26,10 +27,10 @@ export const MainRoutes = () => {
             <Routes>
                 <Route path = "/" element={ <PrivateRoute element={<App/>}/> }>
                     <Route index element={ <Principal/> }/>
-                    <Route path="task" element={ <h1><strong>Task:</strong> Esto es una página de prueba</h1> }/>
+                    <Route path="orders/" element={ <OrdersPage/> }/>
                     <Route path="scroll-page" element={ <ScrollPage/> }/>
                     <Route path="user/:username" element={ <ProfilePage/> }/>
-                    <Route path="prueba4" element={ <h1><strong>prueba 4:</strong> Esto es una página de prueba</h1> }/>
+                    <Route path="settings" element={ <h1><strong>prueba 4:</strong> Esto es una página de prueba</h1> }/>
                     <Route path="prueba5" element={ <h1><strong>prueba 5:</strong> Esto es una página de prueba</h1> }/>
                     <Route path="prueba6" element={ <h1><strong>prueba 6:</strong> Esto es una página de prueba</h1> }/>
                     <Route path="prueba7" element={ <h1><strong>prueba 7:</strong> Esto es una página de prueba</h1> }/>
