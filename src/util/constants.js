@@ -8,5 +8,4 @@ export const AUTH_PATH = "/auth";
 export const PERSON_PATH = "/person";
 
 export const ACCESS_TOKEN = 'accessToken';
-export const USER_DETAILS = 'userDetails';
 export const MENU_STATE = 'menuState';
