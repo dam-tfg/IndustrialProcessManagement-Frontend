@@ -21,15 +21,13 @@ document.title = "Industrial Process Management";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <CustomProvider>
-                <AuthProvider>
-                    <MainRoutes/>
-                    <Toaster reverseOrder="false"/>
-                </AuthProvider>
-            </CustomProvider>
-            <ReactQueryDevtools position="bottom-right"/>
-        </QueryClientProvider>
-    </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+        <CustomProvider>
+            <AuthProvider>
+                <MainRoutes/>
+                <Toaster reverseOrder="false"/>
+            </AuthProvider>
+        </CustomProvider>
+        <ReactQueryDevtools position="bottom-right"/>
+    </QueryClientProvider>
 );
