@@ -3,7 +3,7 @@
  *
  */
 
-import { API_BASE_URL, AUTH_PATH, USER_DETAILS } from "../../util/constants";
+import { API_BASE_URL, AUTH_PATH } from "../../util/constants";
 import { axiosInstance } from "../util/axiosIntance";
 
 class UserService { 
@@ -11,6 +11,13 @@ class UserService {
     login = async (userLogin) => {
         
         const { data } = await axiosInstance.post(AUTH_PATH + "/login", userLogin);
+        
+        return data;
+    }
+
+    checkAuthorization = async (role) => {
+
+        const { data } = await axiosInstance.get(AUTH_PATH + "/check-authorization/" + role);
         
         return data;
     }
