@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hook/auth/useAuth";
-import { ACCESS_TOKEN, USER_DETAILS } from "../util/constants";
+import { ACCESS_TOKEN } from "../util/constants";
 import toast from 'react-hot-toast';
 
 export const HeaderTestAuth = () => {
@@ -13,9 +13,6 @@ export const HeaderTestAuth = () => {
         <>
         <h4>
             <strong>ACCESS TOKEN:</strong> { localStorage.getItem(ACCESS_TOKEN) }
-        </h4>
-        <h4>
-            <strong>USER DETAILS:</strong> { localStorage.getItem(USER_DETAILS) }
         </h4>
         <h5>
             <strong>TOAST ID:</strong> { toastId }
