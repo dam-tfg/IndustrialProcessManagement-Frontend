@@ -2,12 +2,12 @@
  * @author Alberto González
  *
  */
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import UserService from "../services/user/UserService";
-import { ACCESS_TOKEN, USER_DETAILS } from "../util/constants";
+import { ACCESS_TOKEN } from "../util/constants";
 
 const AuthContext = createContext();
 
@@ -21,8 +21,6 @@ const AuthProvider = ({ children }) => {
 
     const [payload, setPayload] = useState();
 
-    const [userDetails, setUserDetails] = useState();
-
     useEffect(() => {
 
         try {
@@ -30,30 +28,19 @@ const AuthProvider = ({ children }) => {
             if (token !== "") {
                 
                 localStorage.setItem(ACCESS_TOKEN, token);
-                setUserDetails(payload);
             }
             
             if(!token) {
                 
                 localStorage.removeItem(ACCESS_TOKEN);
-                localStorage.removeItem(USER_DETAILS);
                 <Navigate to="/auth/login"/>
             }
 
         } catch (error) {
 
             localStorage.removeItem(ACCESS_TOKEN);
-            localStorage.removeItem(USER_DETAILS);
-            console.log("AuthProvider useEffect:", error);
         }
-    }, [token, payload, userDetails]);
-
-    useEffect(() => {
-        
-        /* localStorage.setItem(USER_DETAILS, JSON.stringify(userDetails)); */
-        /* userDetails && console.log(Object.values(userDetails)); */    
-
-    }, [userDetails]);
+    }, [token, payload]);
 
     const isTokenExpired = () => {
         
@@ -62,7 +49,7 @@ const AuthProvider = ({ children }) => {
                     ? true
                     : false
 
-        } catch (err) {
+        } catch (error) {
 
             return false;
         }
@@ -94,10 +81,6 @@ const AuthProvider = ({ children }) => {
         isLogged() {
 
             return !!token && !isTokenExpired();
-        },
-        getUserDetails() {
-
-            return !!userDetails;
         },
         error,
         isLoading,
