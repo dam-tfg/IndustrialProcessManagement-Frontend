@@ -15,6 +15,13 @@ class PersonService {
         return data;
     }
 
+    getAllPersons = async () => {
+
+        const { data } = await axiosInstance.get(PERSON_PATH + "/all");
+
+        return data;
+    }
+
 }
 
 export default new PersonService();

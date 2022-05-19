@@ -33,13 +33,13 @@ export const HeaderComponent = () => {
                     label: 'Admin',
                     key: '1',
                     icon: <DashboardOutlined/>,
-                    onClick: () => navigate('admin')
+                    onClick: () => navigate('/admin')
                 },
                 {
                     label: 'Configuración',
                     key: '2',
                     icon: <SettingOutlined />,
-                    onClick: () => navigate('settings')
+                    onClick: () => navigate('/settings')
                 },
                 isLogged && {
                     label: 'Salir',
@@ -68,7 +68,7 @@ export const HeaderComponent = () => {
                 placement = "bottom" 
                 icon = { <UserOutlined/> }
                 loading={ isLoading || isFetching }
-                onClick = {() => navigate("user/" + user?.username)}
+                onClick = {() => navigate("/user/" + user?.username)}
             >
                 {user?.name} {user?.surnames} {/* TODO Username */}
             </Dropdown.Button>

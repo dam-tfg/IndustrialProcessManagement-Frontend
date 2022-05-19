@@ -10,37 +10,58 @@ import {
   } from "react-router-dom";
 import { App } from '../app/App';
 import { LoginComponent } from "../components/auth/LoginComponent";
-import { Dashboard } from '../pages/admin/dashboard'
-import { OrdersPage } from "../pages/client/OrdersPage";
+import { Dashboard } from '../pages/admin/Dashboard'
+import { OrdersPage } from "../pages/orders/OrdersPage";
 import { E404 } from '../pages/error/404';
 import { Principal } from "../pages/Principal";
 import { ProfilePage } from "../pages/user/ProfilePage";
-import { Welcome } from "../pages/Welcome";
 import { ScrollPage } from "../testComponents/ScrollPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { CreateOrdersPage } from "../pages/orders/CreateOrdersPage";
+import { StockPage } from "../pages/component/StockPage";
+import { ProducctionPage } from "../pages/production/ProducctionPage";
+import { ProcessPage } from "../pages/production/ProcessPage";
+import { SectionPage } from "../pages/production/SectionPage";
+import { LinePage } from "../pages/production/LinePage";
+import { ComponentsPage } from "../pages/component/ComponentsPage";
+import { CreateComponentsPage } from "../pages/component/CreateComponentsPage";
+import { AccountsPage } from "../pages/admin/AccountsPage";
 
 export const MainRoutes = () => {
+
+    const privateRoutes = <PrivateRoute element={<App/>}/>;
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path = "/" element={ <PrivateRoute element={<App/>}/> }>
+                <Route path="/" element={ privateRoutes }>
                     <Route index element={ <Principal/> }/>
-                    <Route path="orders/" element={ <OrdersPage/> }/>
                     <Route path="scroll-page" element={ <ScrollPage/> }/>
                     <Route path="user/:username" element={ <ProfilePage/> }/>
                     <Route path="settings" element={ <h1><strong>prueba 4:</strong> Esto es una página de prueba</h1> }/>
-                    <Route path="prueba5" element={ <h1><strong>prueba 5:</strong> Esto es una página de prueba</h1> }/>
-                    <Route path="prueba6" element={ <h1><strong>prueba 6:</strong> Esto es una página de prueba</h1> }/>
-                    <Route path="prueba7" element={ <h1><strong>prueba 7:</strong> Esto es una página de prueba</h1> }/>
                 </Route>
-                <Route path="/admin" element={ <PrivateRoute element={<Dashboard/>}/> }>
-                    <Route index element={ <Navigate replace to="dashboard"/> }/>
-                    <Route path="dashboard" element={ <Dashboard/> }/>
+                <Route path="orders" element={ privateRoutes }>
+                    <Route index element={ <OrdersPage/> }/>
+                    <Route path="create" element={ <CreateOrdersPage/> }/>
+                </Route>
+                <Route path="production" element={ privateRoutes }>
+                    <Route index element={ <Navigate replace to="line"/> }/>
+                    <Route path="line" element={ <LinePage/> }/>
+                    <Route path="section" element={ <SectionPage/> }/>
+                    <Route path="process" element={ <ProcessPage/> }/>
+                </Route>
+                <Route path="components" element={ privateRoutes }>
+                    <Route index element={ <ComponentsPage/> }/>
+                    <Route path="create" element={ <CreateComponentsPage/> }/>
+                    <Route path="stock" element={ <StockPage/> }/>
+                </Route>
+                <Route path="admin" element={ privateRoutes }>
+                    <Route index element={ <Dashboard/> }/>
+                    <Route path="accounts" element={ <AccountsPage/> }/>
                     <Route path="pruebas" element={<h1>Navigate funciona con location.</h1>}/>
                 </Route>
-                <Route path="/auth" element={ <PublicRoute/> }>
+                <Route path="auth" element={ <PublicRoute/> }>
                     <Route index element={ <Navigate replace to="login"/> }/>
                     <Route path="login" element={ <LoginComponent/> }/>
                 </Route>

@@ -6,7 +6,7 @@ import { Button } from "antd";
 import Modal from 'antd/lib/modal/Modal';
 import { useCustom } from "../../hook/app/useCustom";
 
-export const EditModal = (person) => {
+export const UserModal = (props) => {
 
     const { modal, setModal } = useCustom();
 
@@ -24,7 +24,7 @@ export const EditModal = (person) => {
         
         <Modal
           visible={modal}
-          title="Title"
+          title={true ? 'Modificar usuario' : 'Nuevo usuario'}
           onOk={() => handleOk()}
           onCancel={() => handleCancel()}
           footer={[

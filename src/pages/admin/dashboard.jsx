@@ -3,32 +3,58 @@
  *
  */
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import UserService from "../../services/user/UserService";
+import styles from '../../scss/pages/admin/dashboard.module.scss';
+import { Button, Card, Space, Tooltip } from "antd";
+import { AppstoreOutlined, BellOutlined, SafetyOutlined, UserOutlined } from "@ant-design/icons";
 
 export const Dashboard = () => {
-    
-    const { data: user, error, isLoading, isFetching } = useQuery(["current-user"], UserService.getCurrentUser);
 
-    if (isLoading) {
-        return (
-            <div>
-                <span className="spinner-border"></span> Loading current user...
-            </div>
-        );
-    }
+    const { data: user, isLoading } = useQuery(["current-user"], UserService.getCurrentUser);
 
-    if (error) {
-        return (
-            <div className="alert alert-danger">
-                Error fetching user: {error.message}
-            </div>
-        );
-    }
+    const menu = [
+        {
+            key: '#general',
+            title: 'General',
+            icon: <AppstoreOutlined />
+        },
+        {
+            key: 'accounts',
+            title: 'Administración de cuentas',
+            icon: <UserOutlined />
+        },
+        {
+            key: '#notifications',
+            title: 'Notificaciones',
+            icon: <BellOutlined />
+        },
+        {
+            key: '#security',
+            title: 'Seguridad',
+            icon: <SafetyOutlined />
+        }
+    ];
 
     return (
-        <div>
-            <h1 id={user.id}>Bienvenido! {user.name} {user.surnames} {isFetching && "(Fetching...)"}</h1>
-            <h3>@{user.username} -- <strong>User status </strong><input type="checkbox" checked={user.enabled} readOnly></input></h3>
-        </div>
+        <Card 
+            title={`Bienvenido, ${user?.name} ${user?.surnames}`}
+            loading={isLoading}
+        >
+            {menu.map(item => {
+                return (
+                    <Link to={item.key} key={item.key}>
+                        <Tooltip title={item.title}>
+                            <Card.Grid className={styles.gridStyle}>
+                                <Space>
+                                    <Button icon={item.icon} size="large" />
+                                    {item.title}
+                                </Space>
+                            </Card.Grid>
+                        </Tooltip>
+                    </Link>
+                );
+            })}
+        </Card>
     );
 }

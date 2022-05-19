@@ -2,44 +2,17 @@
  * @author Alberto González
  *
  */
-import { useEffect } from "react";
 import { useCustom } from '../../../hook/app/useCustom';
-import { Layout, Menu } from 'antd';
-import {
-    ShoppingCartOutlined,
-    AppstoreAddOutlined,
-    UnorderedListOutlined,
-} from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Layout } from 'antd';
+import { Link } from 'react-router-dom';
 import styles from '../../scss/SidebarComponent.module.scss';
-import UserService from '../../../services/user/UserService';
+import { MenuComponent } from "./MenuComponent";
 
 const { Sider } = Layout;
 
 export const SidebarComponent = () => {
 
     const { menuState } = useCustom();
-    const navigate = useNavigate();
-
-    const client = {
-        key: 'order',
-        icon: <ShoppingCartOutlined />,
-        label: 'Pedidos',
-        children: [
-            {
-                key: 'new-order',
-                icon: <AppstoreAddOutlined />,
-                label: 'Nuevo pedido',
-                onClick: () => navigate('orders'),
-            },
-            {
-                key: 'orders',
-                icon: <UnorderedListOutlined />,
-                label: 'Pedidos',
-                onClick: () => navigate('scroll-page'),
-            }
-        ]
-    };  
     
     return (
         <Sider trigger={null} collapsible collapsed={menuState} style={{
@@ -58,32 +31,7 @@ export const SidebarComponent = () => {
                         : styles.full} 
                 />
             </div>
-            <Menu /* TODO Menu */
-                theme="dark"
-                mode="inline"
-                defaultSelectedKeys={['orders']}
-                items={[
-                    {
-                        key: 'order',
-                        icon: <ShoppingCartOutlined />,
-                        label: 'Pedidos',
-                        children: [
-                            (async () => await UserService.checkAuthorization("client")) && {
-                                key: 'new-order',
-                                icon: <AppstoreAddOutlined />,
-                                label: 'Nuevo pedido',
-                                onClick: () => navigate('orders'),
-                            },
-                            {
-                                key: 'orders',
-                                icon: <UnorderedListOutlined />,
-                                label: 'Pedidos',
-                                onClick: () => navigate('scroll-page'),
-                            }
-                        ]
-                    }   
-                ]}
-            />
+            <MenuComponent/>
         </Sider>
     );
 }

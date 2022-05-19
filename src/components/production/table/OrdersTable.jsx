@@ -2,8 +2,9 @@
  * @author Alberto González
  *
  */
-/* import { Button, Space, Table, Tabs } from 'antd';
+import { Button, Space, Table, Tabs } from 'antd';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 const { TabPane } = Tabs;
@@ -114,40 +115,20 @@ export const OrdersTable = () => {
 
     const columns = [
         {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
-            filters: [
-                { text: 'Joe', value: 'Joe' },
-                { text: 'Jim', value: 'Jim' },
-            ],
-            filteredValue: filtered.name || null,
-            onFilter: (value, record) => record.name.includes(value),
-            sorter: (a, b) => a.name.length - b.name.length,
-            sortOrder: sorted.columnKey === 'name' && sorted.order,
-            ellipsis: true,
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-            sorter: (a, b) => a.age - b.age,
-            sortOrder: sorted.columnKey === 'age' && sorted.order,
-            ellipsis: true,
+            title: 'Descripción',
+            dataIndex: 'description',
+            key: 'description',
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-            filters: [
-                { text: 'London', value: 'London' },
-                { text: 'New York', value: 'New York' },
-            ],
-            filteredValue: filtered.address || null,
-            onFilter: (value, record) => record.address.includes(value),
-            sorter: (a, b) => a.address.length - b.address.length,
-            sortOrder: sorted.columnKey === 'address' && sorted.order,
-            ellipsis: true,
+            title: 'Acciones',
+            dataIndex: 'actions',
+            key: 'actions',
+            render: () => <Link to="/">Delete</Link>
         },
     ];
     return (
@@ -181,9 +162,4 @@ export const OrdersTable = () => {
             </Tabs>
         </StickyContainer>
     );
-}; */
-
-export const OrdersTable = () => {
-
-    return <h1>Tablas de datos...</h1>; // TODO Tablas de datos
 };

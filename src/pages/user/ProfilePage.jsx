@@ -7,10 +7,11 @@ import { Button, Card, Spin } from "antd";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import PersonService from '../../services/user/PersonService';
-import { EditModal } from '../../components/user/EditModal';
+import { UserModal } from '../../components/user/UserModal';
 import { useCustom } from '../../hook/app/useCustom';
 import { EditOutlined } from '@ant-design/icons';
 import { InfoComponent } from '../../components/user/InfoComponent';
+import { AuthorizationsComponent } from '../../components/user/AuthorizationsComponent';
 
 const tabListNoTitle = [
     {
@@ -42,7 +43,7 @@ export const ProfilePage = () => {
     const contentListNoTitle = {
         info: <InfoComponent person={person}/>,
         credentials: <p>{/* TODO */} Cambio de contraseña</p>,
-        authorization: <p>{/* TODO */} Permisos</p>,
+        authorization: <AuthorizationsComponent person={person}/>,
     };
 
     const onTab2Change = key => {
@@ -55,7 +56,6 @@ export const ProfilePage = () => {
             style={{ width: '100%' }}
             title={isLoading ? <Spin spinning={isLoading || isFetching}></Spin> : person?.name + " " + person?.surname}
             loading={isLoading}
-            ena
             extra={
                 <Button 
                     loading={isLoading} 
@@ -70,7 +70,7 @@ export const ProfilePage = () => {
             }}
         >
             {contentListNoTitle[activeTabKey2]}
-            <EditModal person={person}/>
+            <UserModal user={person}/>
         </Card>
     );
 }
