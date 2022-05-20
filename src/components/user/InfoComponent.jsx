@@ -3,7 +3,7 @@
  *
  */
 import { UserOutlined } from "@ant-design/icons";
-import { Col, Input, Row, Typography } from "antd";
+import { Col, Row, Typography } from "antd";
 
 export const InfoComponent = (props) => {
 

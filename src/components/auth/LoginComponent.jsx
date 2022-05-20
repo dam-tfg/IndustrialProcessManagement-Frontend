@@ -2,11 +2,11 @@
  * @author Alberto González
  *
  */
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Checkbox, Form, Input, Spin, Tooltip } from 'antd';
-import { InfoCircleOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Dropdown, Form, Input, Menu } from 'antd';
+import { DownOutlined, LockOutlined, SlidersOutlined, UserOutlined } from '@ant-design/icons';
 import { useAuth } from '../../hook/auth/useAuth';
-import { Header } from 'antd/lib/layout/layout';
 import styles from '../../scss/components/auth/LoginComponent.module.scss';
 
 export const LoginComponent = () => {
@@ -23,9 +23,92 @@ export const LoginComponent = () => {
         navigate(location.state?.from || "/admin");
     }
 
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+
+    const menu = (
+        <Menu
+            items={[
+                {
+                    key: '1',
+                    label: 'Administrador',
+                    icon: <UserOutlined/>,
+                    onClick: () => {
+                        setUsername("administrator");
+                        setPassword("administrator-demo");
+                    }
+                },
+                {
+                    key: '2',
+                    label: 'Usuario',
+                    icon: <UserOutlined/>,
+                    onClick: () => {
+                        setUsername("user1");
+                        setPassword("user-demo");
+                    }
+                },
+                {
+                    key: '3',
+                    label: 'Cliente',
+                    icon: <UserOutlined/>,
+                    onClick: () => {
+                        setUsername("client");
+                        setPassword("client-demo");
+                    }
+                },
+                {
+                    key: '4',
+                    label: 'Empleado',
+                    icon: <UserOutlined/>,
+                    onClick: () => {
+                        setUsername("employee");
+                        setPassword("employee-demo");
+                    }
+                },
+                {
+                    key: '5',
+                    label: 'Empresa 1',
+                    icon: <SlidersOutlined/>,
+                    onClick: () => {
+                        setUsername("company1");
+                        setPassword("company-demo");
+                    }
+                },
+                {
+                    key: '6',
+                    label: 'Empresa 2',
+                    icon: <SlidersOutlined/>,
+                    onClick: () => {
+                        setUsername("company2");
+                        setPassword("company-demo");
+                    }
+                },
+                {
+                    key: '7',
+                    label: 'Empresa 3',
+                    icon: <SlidersOutlined/>,
+                    onClick: () => {
+                        setUsername("company3");
+                        setPassword("company-demo");
+                    }
+                },
+            ]}
+        />
+    );
+
     return (
         <Form name="normal_login"
             className="login-form"
+            fields={[
+                {
+                    name: ['username'],
+                    value: username,
+                },
+                {
+                    name: ['password'],
+                    value: password,
+                }
+            ]}
             initialValues={{
                 remember: true,
             }}
@@ -42,11 +125,11 @@ export const LoginComponent = () => {
                     },
                 ]}
             >
-                <Input prefix={ <UserOutlined className="site-form-item-icon"/> } 
+                <Input prefix={<UserOutlined className="site-form-item-icon" />}
                     placeholder="Username"
                 />
             </Form.Item>
-
+        
             <Form.Item name="password"
                 rules={[
                     {
@@ -56,7 +139,7 @@ export const LoginComponent = () => {
                 ]}
             >
                 <Input.Password
-                    prefix={ <LockOutlined className="site-form-item-icon"/> }
+                    prefix={<LockOutlined className="site-form-item-icon" />}
                     placeholder="Password"
                 />
             </Form.Item>
@@ -76,6 +159,15 @@ export const LoginComponent = () => {
                     Log in
                 </Button>
             </Form.Item>
+            <div className={styles.floatSelector}>
+                <Dropdown.Button
+                    type="primary"
+                    icon={<DownOutlined />}
+                    overlay={menu}
+                >
+                    {username || 'Seleccione el usuario'}
+                </Dropdown.Button>
+            </div>
         </Form>
     );
 }

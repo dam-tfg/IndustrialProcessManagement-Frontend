@@ -6,6 +6,10 @@ import {
     ShoppingCartOutlined,
     AppstoreAddOutlined,
     UnorderedListOutlined,
+    BuildOutlined,
+    ApartmentOutlined,
+    SisternodeOutlined,
+    FunnelPlotOutlined,
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import UserService from '../../../services/user/UserService';
@@ -19,18 +23,18 @@ export const MenuComponent = () => {
 
     const client = [{
         key: 'orders',
-        icon: <ShoppingCartOutlined />,
+        icon: <ShoppingCartOutlined/>,
         label: 'Pedidos',
         children: [
             {
                 key: 'orders-create',
-                icon: <AppstoreAddOutlined />,
+                icon: <AppstoreAddOutlined/>,
                 label: 'Nuevo pedido',
                 onClick: () => navigate('/orders/create'),
             },
             {
                 key: 'orders-orders',
-                icon: <UnorderedListOutlined />,
+                icon: <UnorderedListOutlined/>,
                 label: 'Pedidos',
                 onClick: () => navigate('/orders'),
             }
@@ -39,24 +43,24 @@ export const MenuComponent = () => {
 
     const employee = [{
         key: 'production',
-        icon: <ShoppingCartOutlined />,
+        icon: <ApartmentOutlined/>,
         label: 'Producción',
         children: [
             {
                 key: 'production-line',
-                icon: <AppstoreAddOutlined />,
+                icon: <SisternodeOutlined/>,
                 label: 'Líneas',
                 onClick: () => navigate('/production/line'),
             },
             {
                 key: 'production-section',
-                icon: <AppstoreAddOutlined />,
+                icon: <SisternodeOutlined/>,
                 label: 'Secciones',
                 onClick: () => navigate('/production/section'),
             },
             {
                 key: 'production-process',
-                icon: <AppstoreAddOutlined />,
+                icon: <SisternodeOutlined/>,
                 label: 'Procesos',
                 onClick: () => navigate('/production/process'),
             }
@@ -64,24 +68,24 @@ export const MenuComponent = () => {
     },
     {
         key: 'components',
-        icon: <ShoppingCartOutlined />,
+        icon: <BuildOutlined/>,
         label: 'Componentes',
         children: [
             {
                 key: 'components-create',
-                icon: <AppstoreAddOutlined />,
+                icon: <AppstoreAddOutlined/>,
                 label: 'Nuevo componente',
                 onClick: () => navigate('/components/create'),
             },
             {
                 key: 'components-components',
-                icon: <UnorderedListOutlined />,
+                icon: <UnorderedListOutlined/>,
                 label: 'Componentes',
                 onClick: () => navigate('/components'),
             },
             {
                 key: 'components-stock',
-                icon: <UnorderedListOutlined />,
+                icon: <FunnelPlotOutlined/>,
                 label: 'Stock',
                 onClick: () => navigate('/components/stock'),
             }

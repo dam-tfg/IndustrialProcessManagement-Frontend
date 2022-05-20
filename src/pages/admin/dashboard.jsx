@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import UserService from "../../services/user/UserService";
 import styles from '../../scss/pages/admin/dashboard.module.scss';
 import { Button, Card, Space, Tooltip } from "antd";
-import { AppstoreOutlined, BellOutlined, SafetyOutlined, UserOutlined } from "@ant-design/icons";
+import { BellOutlined, GlobalOutlined, SafetyOutlined, UserOutlined } from "@ant-design/icons";
 
 export const Dashboard = () => {
 
@@ -17,22 +17,22 @@ export const Dashboard = () => {
         {
             key: '#general',
             title: 'General',
-            icon: <AppstoreOutlined />
+            icon: <GlobalOutlined/>
         },
         {
             key: 'accounts',
             title: 'Administración de cuentas',
-            icon: <UserOutlined />
+            icon: <UserOutlined/>
         },
         {
             key: '#notifications',
             title: 'Notificaciones',
-            icon: <BellOutlined />
+            icon: <BellOutlined/>
         },
         {
             key: '#security',
             title: 'Seguridad',
-            icon: <SafetyOutlined />
+            icon: <SafetyOutlined/>
         }
     ];
 

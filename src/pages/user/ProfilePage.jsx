@@ -3,7 +3,7 @@
  *
  */
 import { useState } from 'react';
-import { Button, Card, Spin } from "antd";
+import { Alert, Button, Card, Spin } from "antd";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import PersonService from '../../services/user/PersonService';
@@ -35,10 +35,7 @@ export const ProfilePage = () => {
 
     const { setModal } = useCustom();
 
-    const [activeTabKey2, setActiveTabKey2] = useState('info');
-
-
-    
+    const [activeTabKey, setActiveTabKey] = useState('info');
 
     const contentListNoTitle = {
         info: <InfoComponent person={person}/>,
@@ -47,7 +44,7 @@ export const ProfilePage = () => {
     };
 
     const onTab2Change = key => {
-        setActiveTabKey2(key);
+        setActiveTabKey(key);
     };
 
     return (
@@ -64,12 +61,13 @@ export const ProfilePage = () => {
                 >Edit</Button>
             }
             tabList={tabListNoTitle}
-            activeTabKey={activeTabKey2}
+            activeTabKey={activeTabKey}
             onTabChange={key => {
                 onTab2Change(key);
             }}
         >
-            {contentListNoTitle[activeTabKey2]}
+            {/* TODO Alerta error */}
+            {contentListNoTitle[activeTabKey]}
             <UserModal user={person}/>
         </Card>
     );

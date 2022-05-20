@@ -20,7 +20,6 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { CreateOrdersPage } from "../pages/orders/CreateOrdersPage";
 import { StockPage } from "../pages/component/StockPage";
-import { ProducctionPage } from "../pages/production/ProducctionPage";
 import { ProcessPage } from "../pages/production/ProcessPage";
 import { SectionPage } from "../pages/production/SectionPage";
 import { LinePage } from "../pages/production/LinePage";
@@ -39,7 +38,7 @@ export const MainRoutes = () => {
                     <Route index element={ <Principal/> }/>
                     <Route path="scroll-page" element={ <ScrollPage/> }/>
                     <Route path="user/:username" element={ <ProfilePage/> }/>
-                    <Route path="settings" element={ <h1><strong>prueba 4:</strong> Esto es una página de prueba</h1> }/>
+                    <Route path="settings" element={ <h1><strong>Configuración:</strong> En esta página aparecen las configuraciones de la cuenta.</h1> }/>
                 </Route>
                 <Route path="orders" element={ privateRoutes }>
                     <Route index element={ <OrdersPage/> }/>
@@ -59,7 +58,6 @@ export const MainRoutes = () => {
                 <Route path="admin" element={ privateRoutes }>
                     <Route index element={ <Dashboard/> }/>
                     <Route path="accounts" element={ <AccountsPage/> }/>
-                    <Route path="pruebas" element={<h1>Navigate funciona con location.</h1>}/>
                 </Route>
                 <Route path="auth" element={ <PublicRoute/> }>
                     <Route index element={ <Navigate replace to="login"/> }/>

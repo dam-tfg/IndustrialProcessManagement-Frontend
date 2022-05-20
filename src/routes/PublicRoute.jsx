@@ -4,7 +4,7 @@
  */
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hook/auth/useAuth";
-import { Auth } from "../pages/auth/auth";
+import { Auth } from "../pages/auth/Auth";
 
 export const PublicRoute = () => {
 

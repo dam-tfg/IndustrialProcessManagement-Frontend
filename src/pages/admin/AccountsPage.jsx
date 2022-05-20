@@ -7,13 +7,12 @@ import { useQuery } from "react-query";
 import Moment from 'moment';
 import CompanyService from "../../services/company/CompanyService";
 import PersonService from "../../services/user/PersonService";
-import { EditOutlined, UserAddOutlined } from "@ant-design/icons";
+import { UserAddOutlined } from "@ant-design/icons";
 import { useCustom } from "../../hook/app/useCustom";
 import { UserModal } from "../../components/user/UserModal";
 
 export const AccountsPage = () => {
 
-    /* const { data: person, error, isLoading, isFetching } = useQuery(["current-user"], UserService.getCurrentUser); */
     const person = useQuery(["all-person"], PersonService.getAllPersons);
     const company = useQuery(["all-company"], CompanyService.getAllCompanies);
 
@@ -138,7 +137,7 @@ export const AccountsPage = () => {
                     <Button 
                         loading={person.isLoading} 
                         icon={ <UserAddOutlined/> }
-                        onClick={ () => {setModal(true)} }
+                        onClick={ () => setModal(true) }
                     >Nueva persona</Button>
                 }
             >
@@ -157,7 +156,7 @@ export const AccountsPage = () => {
                     <Button 
                         loading={person.isLoading} 
                         icon={ <UserAddOutlined/> }
-                        onClick={ () => {setModal(true)} }
+                        onClick={ () => setModal(true) }
                     >Nueva empresa</Button>
                 }
             >

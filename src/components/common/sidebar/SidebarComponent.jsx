@@ -5,7 +5,7 @@
 import { useCustom } from '../../../hook/app/useCustom';
 import { Layout } from 'antd';
 import { Link } from 'react-router-dom';
-import styles from '../../scss/SidebarComponent.module.scss';
+import styles from '../../../scss/components/common/SidebarComponent.module.scss';
 import { MenuComponent } from "./MenuComponent";
 
 const { Sider } = Layout;

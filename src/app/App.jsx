@@ -2,7 +2,6 @@
  * @author Alberto González
  *
  */
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { HeaderComponent } from '../components/common/HeaderComponent';
 import { FooterComponent } from '../components/common/FooterComponent';

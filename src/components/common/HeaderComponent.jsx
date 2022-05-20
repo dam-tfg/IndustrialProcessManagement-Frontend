@@ -5,14 +5,14 @@
 import { useAuth } from '../../hook/auth/useAuth';
 import { useCustom } from '../../hook/app/useCustom';
 import { Dropdown, Layout, Menu } from 'antd';
-import { createElement, useState } from 'react';
+import { createElement } from 'react';
 import { DashboardOutlined, LogoutOutlined, 
     MenuFoldOutlined, 
     MenuUnfoldOutlined, 
     SettingOutlined, 
     UserOutlined 
 } from '@ant-design/icons';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import UserService from '../../services/user/UserService';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../scss/components/common/HeaderComponent.module.scss';
@@ -25,11 +25,15 @@ export const HeaderComponent = () => {
     const { menuState, toggleMenu } = useCustom();
     const navigate = useNavigate();
     
+    const adminQuery = useMutation(UserService.checkAuthorization);
+
+    (!adminQuery.isSuccess & !adminQuery.isLoading) && adminQuery.mutate("admin");
+    var adminAuth = (adminQuery.isSuccess && adminQuery.data) ? adminQuery.data : false;
     const menu = (
 
         <Menu
             items={[
-                { /* TODO Permisos por ROLE */
+                adminAuth && { /* TODO Permisos por ROLE */
                     label: 'Admin',
                     key: '1',
                     icon: <DashboardOutlined/>,
@@ -70,7 +74,7 @@ export const HeaderComponent = () => {
                 loading={ isLoading || isFetching }
                 onClick = {() => navigate("/user/" + user?.username)}
             >
-                {user?.name} {user?.surnames} {/* TODO Username */}
+                {`@${user?.username}`}
             </Dropdown.Button>
         </Header>
     );
